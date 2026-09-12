@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALL DOG | $ALLDOG</title>
+  <meta name="description" content="ALLDOG is here! One pack, one mission, unstoppable meme energy. ALLDOG is running wild on Solana!" />
+  <meta property="og:title" content="ALL DOG | $ALLDOG" />
+  <meta property="og:description" content="ALLDOG is here! One pack, one mission, unstoppable meme energy. ALLDOG is running wild on Solana!" />
+  <meta property="og:image" content="banner.jpg" />
+  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FFF6E8",
+            foam: "#FFEFD4",
+            chocolate: "#8B5A2B",
+            cocoa: "#5C3317",
+            caramel: "#C4A574",
+            spot: "#A0673A",
+            space: "#05010C",
+          },
+          fontFamily: {
+            display: ["Chewy", "cursive"],
+            body: ["Fredoka", "Nunito", "sans-serif"],
+          },
+          boxShadow: {
+            glow: "0 0 40px rgba(196, 165, 116, 0.35)",
+            chocolate: "0 10px 30px rgba(92, 51, 23, 0.45)",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --cream: #fff6e8;
+      --foam: #ffefd4;
+      --chocolate: #8b5a2b;
+      --cocoa: #5c3317;
+      --caramel: #c4a574;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Fredoka", "Nunito", sans-serif;
+      background: #05010c;
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    #starfield {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nebula {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 15%, rgba(88, 28, 135, 0.42), transparent 55%),
+        radial-gradient(ellipse 70% 45% at 88% 8%, rgba(30, 64, 175, 0.38), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 70% 80%, rgba(157, 23, 77, 0.28), transparent 55%),
+        radial-gradient(ellipse 50% 35% at 20% 85%, rgba(67, 56, 202, 0.25), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(8, 4, 20, 0.2), #05010c 80%);
+      animation: nebulaDrift 28s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebulaDrift {
+      0% { transform: scale(1) translate(0, 0); filter: hue-rotate(0deg); }
+      100% { transform: scale(1.08) translate(-2%, 1%); filter: hue-rotate(18deg); }
+    }
+
+    .shooting-star {
+      position: fixed;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #fff6e8);
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      transform: rotate(-28deg);
+      animation: shoot 7s linear infinite;
+    }
+    .shooting-star:nth-child(2) { top: 18%; left: 70%; animation-delay: 2.4s; }
+    .shooting-star:nth-child(3) { top: 42%; left: 20%; animation-delay: 5.1s; width: 90px; }
+    .shooting-star:nth-child(4) { top: 72%; left: 55%; animation-delay: 3.6s; }
+
+    @keyframes shoot {
+      0% { opacity: 0; transform: translateX(0) rotate(-28deg); }
+      8% { opacity: 0.85; }
+      22% { opacity: 0; transform: translateX(380px) rotate(-28deg); }
+      100% { opacity: 0; }
+    }
+
+    .content-layer { position: relative; z-index: 2; }
+
+    .glass {
+      background: linear-gradient(160deg, rgba(255, 246, 232, 0.08), rgba(139, 90, 43, 0.12));
+      border: 1px solid rgba(255, 239, 212, 0.18);
+      backdrop-filter: blur(16px);
+    }
+
+    .paw-card {
+      background: linear-gradient(165deg, rgba(255, 246, 232, 0.1), rgba(92, 51, 23, 0.28));
+      border: 1px solid rgba(196, 165, 116, 0.35);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .bone-tag {
+      background: linear-gradient(180deg, #fff6e8 0%, #f3d7a5 100%);
+      color: #5c3317;
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.55),
+        0 8px 24px rgba(92, 51, 23, 0.4);
+    }
+
+    .btn-buy {
+      background: linear-gradient(180deg, #c48a4a 0%, #8b5a2b 55%, #5c3317 100%);
+      color: #fff6e8;
+      box-shadow: 0 8px 0 #3d220f, 0 16px 32px rgba(139, 90, 43, 0.45);
+    }
+    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 0 #3d220f, 0 20px 36px rgba(196, 165, 116, 0.4); }
+    .btn-buy:active { transform: translateY(4px); box-shadow: 0 2px 0 #3d220f; }
+
+    .btn-chart {
+      background: transparent;
+      color: #fff6e8;
+      border: 2px solid #c4a574;
+      box-shadow: 0 0 24px rgba(196, 165, 116, 0.2);
+    }
+    .btn-chart:hover {
+      background: rgba(255, 246, 232, 0.08);
+      box-shadow: 0 0 32px rgba(196, 165, 116, 0.4);
+    }
+
+    .logo-float { animation: floatDog 3.4s ease-in-out infinite; }
+    @keyframes floatDog {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+
+    .title-glow {
+      text-shadow:
+        0 4px 0 #5c3317,
+        0 8px 24px rgba(139, 90, 43, 0.55),
+        0 0 40px rgba(196, 165, 116, 0.35);
+    }
+
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-block: 1px solid rgba(196, 165, 116, 0.28);
+      background: rgba(8, 4, 18, 0.55);
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 22s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .trail::before {
+      content: "";
+      position: absolute;
+      top: 46px;
+      left: 8%;
+      right: 8%;
+      height: 0;
+      border-top: 3px dashed rgba(196, 165, 116, 0.45);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: rise 0.8s ease forwards;
+    }
+    @keyframes rise {
+      to { opacity: 1; transform: none; }
+    }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.15s; }
+    .d3 { animation-delay: 0.25s; }
+    .d4 { animation-delay: 0.35s; }
+    .d5 { animation-delay: 0.45s; }
+
+    .paw-print {
+      fill: #c4a574;
+      opacity: 0.22;
+      animation: pawTwinkle 5s ease-in-out infinite;
+    }
+    @keyframes pawTwinkle {
+      0%, 100% { opacity: 0.12; transform: scale(1); }
+      50% { opacity: 0.28; transform: scale(1.06); }
+    }
+
+    #dexscreener-embed { position: relative; width: 100%; padding-bottom: 125%; }
+    @media (min-width: 1400px) {
+      #dexscreener-embed { padding-bottom: 65%; }
+    }
+    #dexscreener-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .toast {
+      transform: translateY(120%);
+      transition: transform 0.35s ease;
+    }
+    .toast.show { transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .trail::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+  <div class="nebula"></div>
+  <div class="shooting-star" style="top:12%;left:10%"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star"></div>
+
+  <svg class="fixed inset-0 w-full h-full pointer-events-none z-[1]" aria-hidden="true">
+    <g class="paw-print" transform="translate(60,140) scale(0.55) rotate(-18)">
+      <ellipse cx="28" cy="42" rx="18" ry="22"/>
+      <circle cx="8" cy="14" r="8"/><circle cx="26" cy="6" r="8"/><circle cx="44" cy="8" r="8"/><circle cx="56" cy="22" r="7"/>
+    </g>
+    <g class="paw-print" transform="translate(1180,220) scale(0.45) rotate(22)" style="animation-delay:1.2s">
+      <ellipse cx="28" cy="42" rx="18" ry="22"/>
+      <circle cx="8" cy="14" r="8"/><circle cx="26" cy="6" r="8"/><circle cx="44" cy="8" r="8"/><circle cx="56" cy="22" r="7"/>
+    </g>
+    <g class="paw-print" transform="translate(180,620) scale(0.4) rotate(8)" style="animation-delay:2s">
+      <ellipse cx="28" cy="42" rx="18" ry="22"/>
+      <circle cx="8" cy="14" r="8"/><circle cx="26" cy="6" r="8"/><circle cx="44" cy="8" r="8"/><circle cx="56" cy="22" r="7"/>
+    </g>
+    <g class="paw-print" transform="translate(980,700) scale(0.5) rotate(-12)" style="animation-delay:0.6s">
+      <ellipse cx="28" cy="42" rx="18" ry="22"/>
+      <circle cx="8" cy="14" r="8"/><circle cx="26" cy="6" r="8"/><circle cx="44" cy="8" r="8"/><circle cx="56" cy="22" r="7"/>
+    </g>
+  </svg>
+
+  <div class="content-layer">
+    <header class="fixed top-0 inset-x-0 z-50">
+      <nav class="mx-auto max-w-6xl mt-3 px-4">
+        <div class="glass rounded-full px-4 py-2.5 flex items-center justify-between shadow-chocolate">
+          <a href="#top" class="flex items-center gap-3">
+            <img src="logo.png" alt="ALL DOG logo" class="h-12 w-12 rounded-full bg-black ring-2 ring-caramel/70 object-contain" />
+            <div class="leading-none">
+              <p class="font-display text-2xl text-cream tracking-wide">ALL DOG</p>
+              <p class="text-[11px] uppercase tracking-[0.28em] text-caramel">$ALLDOG</p>
+            </div>
+          </a>
+          <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-foam">
+            <a href="#about" class="hover:text-caramel transition">About</a>
+            <a href="#howtobuy" class="hover:text-caramel transition">How to Buy</a>
+            <a href="#chart" class="hover:text-caramel transition">Chart</a>
+            <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="hover:opacity-80" aria-label="ALLDOG on X">
+              <img src="x.png" alt="X" class="h-7 w-7 rounded-md bg-black p-1 ring-1 ring-cream/30" />
+            </a>
+            <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-5 py-2 text-sm font-bold">Buy Now</a>
+          </div>
+          <button id="menuBtn" class="md:hidden text-cream text-2xl px-2" aria-label="Open menu">☰</button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden glass mt-2 rounded-3xl p-4 space-y-3 text-foam font-semibold">
+          <a href="#about" class="block">About</a>
+          <a href="#howtobuy" class="block">How to Buy</a>
+          <a href="#chart" class="block">Chart</a>
+          <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
+            <img src="x.png" alt="" class="h-6 w-6 rounded bg-black p-1" /> Follow the pack
+          </a>
+          <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-5 py-2 inline-block">Buy Now</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="pt-32 pb-10 px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="relative overflow-hidden rounded-[2.2rem] border border-caramel/40 shadow-glow">
+            <img src="banner.jpg" alt="ALL DOG banner" class="w-full h-[220px] sm:h-[300px] md:h-[380px] object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-space via-transparent to-black/20"></div>
+          </div>
+
+          <div class="mt-10 grid md:grid-cols-[auto_1fr] gap-8 items-center">
+            <img src="logo.png" alt="ALL DOG mascot" class="logo-float mx-auto h-40 w-40 md:h-52 md:w-52 rounded-full bg-black ring-4 ring-caramel/60 shadow-glow object-contain" />
+            <div>
+              <p class="text-caramel tracking-[0.35em] uppercase text-xs mb-3 reveal d1">Solana Meme Pack</p>
+              <h1 class="font-display text-6xl sm:text-7xl md:text-8xl text-cream title-glow reveal d2">ALL DOG</h1>
+              <p class="mt-2 text-2xl font-bold text-caramel reveal d3">$ALLDOG</p>
+              <p class="mt-5 max-w-2xl text-lg sm:text-xl leading-relaxed text-foam/90 reveal d4">
+                ALLDOG is here! One pack, one mission, unstoppable meme energy. ALLDOG is running wild on Solana!
+              </p>
+              <div class="mt-7 flex flex-wrap items-center gap-4 reveal d5">
+                <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-8 py-3 text-lg font-bold">Buy Now</a>
+                <a href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener noreferrer" class="btn-chart rounded-full px-8 py-3 text-lg font-bold">Chart</a>
+              </div>
+              <div class="mt-6 flex flex-wrap items-center gap-3 reveal d5">
+                <span class="text-caramel text-sm font-semibold uppercase tracking-widest">Contract</span>
+                <button id="copyCa" class="bone-tag rounded-full pl-5 pr-3 py-2 flex items-center gap-3 max-w-full" type="button" aria-label="Copy contract address">
+                  <span class="font-bold">CA</span>
+                  <span id="caValue" class="font-mono text-sm truncate max-w-[180px] sm:max-w-[280px]">TBA</span>
+                  <span class="bg-cocoa text-cream rounded-full px-3 py-1 text-xs font-bold">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee my-8 py-3">
+        <div class="marquee-track font-display text-2xl text-caramel">
+          <span class="px-6">ALLDOG IS HERE</span><span class="px-6">•</span>
+          <span class="px-6">ONE PACK</span><span class="px-6">•</span>
+          <span class="px-6">ONE MISSION</span><span class="px-6">•</span>
+          <span class="px-6">UNSTOPPABLE MEME ENERGY</span><span class="px-6">•</span>
+          <span class="px-6">RUNNING WILD ON SOLANA</span><span class="px-6">•</span>
+          <span class="px-6">$ALLDOG</span><span class="px-6">•</span>
+          <span class="px-6">ALLDOG IS HERE</span><span class="px-6">•</span>
+          <span class="px-6">ONE PACK</span><span class="px-6">•</span>
+          <span class="px-6">ONE MISSION</span><span class="px-6">•</span>
+          <span class="px-6">UNSTOPPABLE MEME ENERGY</span><span class="px-6">•</span>
+          <span class="px-6">RUNNING WILD ON SOLANA</span><span class="px-6">•</span>
+          <span class="px-6">$ALLDOG</span><span class="px-6">•</span>
+        </div>
+      </div>
+
+      <section id="about" class="px-4 py-16">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+          <div class="glass rounded-[2rem] p-8 md:p-10">
+            <p class="text-caramel tracking-[0.3em] uppercase text-xs mb-3">The Pack</p>
+            <h2 class="font-display text-5xl text-cream mb-5">One pack. One mission.</h2>
+            <p class="text-foam/90 text-lg leading-relaxed">
+              ALLDOG is here! One pack, one mission, unstoppable meme energy. ALLDOG is running wild on Solana!
+              Born as a six-legged constellation pup, ALLDOG gathers every good boy, good girl, and degens-with-treats into a single cosmic pack.
+            </p>
+            <p class="mt-4 text-foam/80 leading-relaxed">
+              No leashes. No slowing down. Just chocolate-spot chaos, cream-colored courage, and a whole lot of bark on-chain.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="paw-card rounded-3xl p-6">
+              <p class="font-display text-4xl text-cream">$ALLDOG</p>
+              <p class="text-caramel mt-1 text-sm">Ticker</p>
+            </div>
+            <div class="paw-card rounded-3xl p-6">
+              <p class="font-display text-4xl text-cream">SOL</p>
+              <p class="text-caramel mt-1 text-sm">Chain</p>
+            </div>
+            <div class="paw-card rounded-3xl p-6">
+              <p class="font-display text-4xl text-cream">1 Pack</p>
+              <p class="text-caramel mt-1 text-sm">Community</p>
+            </div>
+            <div class="paw-card rounded-3xl p-6">
+              <p class="font-display text-4xl text-cream">∞</p>
+              <p class="text-caramel mt-1 text-sm">Meme Energy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="howtobuy" class="px-4 py-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <p class="text-caramel tracking-[0.3em] uppercase text-xs mb-3">Fetch your bag</p>
+            <h2 class="font-display text-5xl md:text-6xl text-cream title-glow">How to Buy</h2>
+            <p class="mt-4 text-foam/80 max-w-2xl mx-auto">Four paws. Four steps. Then you are running with $ALLDOG on Solana.</p>
+          </div>
+          <div class="relative trail grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <article class="paw-card rounded-[1.8rem] p-6 relative">
+              <div class="w-14 h-14 rounded-full bone-tag flex items-center justify-center font-display text-2xl mb-5">1</div>
+              <h3 class="font-display text-2xl text-cream mb-2">Get a Wallet</h3>
+              <p class="text-foam/80 leading-relaxed">Install a Solana wallet like Phantom or Solflare. This is your leash-free home for $ALLDOG.</p>
+            </article>
+            <article class="paw-card rounded-[1.8rem] p-6 relative">
+              <div class="w-14 h-14 rounded-full bone-tag flex items-center justify-center font-display text-2xl mb-5">2</div>
+              <h3 class="font-display text-2xl text-cream mb-2">Grab Some SOL</h3>
+              <p class="text-foam/80 leading-relaxed">Buy SOL on an exchange and send it to your wallet. SOL is the treat that fuels the swap.</p>
+            </article>
+            <article class="paw-card rounded-[1.8rem] p-6 relative">
+              <div class="w-14 h-14 rounded-full bone-tag flex items-center justify-center font-display text-2xl mb-5">3</div>
+              <h3 class="font-display text-2xl text-cream mb-2">Open the Swap</h3>
+              <p class="text-foam/80 leading-relaxed">Hit <span class="text-caramel font-bold">Buy Now</span> to open pump.fun. Connect your wallet and keep SOL as the input.</p>
+            </article>
+            <article class="paw-card rounded-[1.8rem] p-6 relative">
+              <div class="w-14 h-14 rounded-full bone-tag flex items-center justify-center font-display text-2xl mb-5">4</div>
+              <h3 class="font-display text-2xl text-cream mb-2">Swap & Join</h3>
+              <p class="text-foam/80 leading-relaxed">Swap SOL for $ALLDOG, confirm the fetch, and welcome to the pack. Unstoppable meme energy unlocked.</p>
+            </article>
+          </div>
+          <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-8 py-3 text-lg font-bold">Buy Now</a>
+            <a href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener noreferrer" class="btn-chart rounded-full px-8 py-3 text-lg font-bold">Chart</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="chart" class="px-4 py-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-10">
+            <p class="text-caramel tracking-[0.3em] uppercase text-xs mb-3">Live on-chain</p>
+            <h2 class="font-display text-5xl md:text-6xl text-cream title-glow">The Pack Chart</h2>
+            <p class="mt-4 text-foam/80">Watch $ALLDOG run wild. Chart updates when the pair goes live.</p>
+          </div>
+          <div class="rounded-[2rem] overflow-hidden border-2 border-caramel/40 shadow-glow bg-black/40">
+            <div id="dexscreener-embed">
+              <iframe src="https://dexscreener.com/solana/TBA?embed=1&theme=dark&trades=0&info=0" title="ALLDOG Dexscreener chart"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-4 py-16">
+        <div class="max-w-4xl mx-auto glass rounded-[2.2rem] p-8 md:p-12 text-center">
+          <img src="logo.png" alt="" class="mx-auto h-24 w-24 rounded-full bg-black ring-2 ring-caramel mb-6" />
+          <h2 class="font-display text-5xl text-cream mb-4">Join the pack</h2>
+          <p class="text-foam/85 text-lg max-w-xl mx-auto">
+            ALLDOG is here! One pack, one mission, unstoppable meme energy. ALLDOG is running wild on Solana!
+          </p>
+          <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-3 btn-chart rounded-full px-6 py-3 font-bold">
+            <img src="x.png" alt="" class="h-7 w-7 rounded bg-black p-1" />
+            Follow @ALLDOGsol
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="px-4 pb-12">
+      <div class="max-w-6xl mx-auto glass rounded-full px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="" class="h-10 w-10 rounded-full bg-black" />
+          <p class="font-display text-xl">ALL DOG <span class="text-caramel text-base">$ALLDOG</span></p>
+        </div>
+        <p class="text-xs text-foam/60 text-center">Meme coin. Not financial advice. Run with the pack, DYOR.</p>
+        <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <img src="x.png" alt="X" class="h-8 w-8 rounded-md bg-black p-1 ring-1 ring-cream/20" />
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast fixed bottom-6 left-1/2 -translate-x-1/2 z-[80] bone-tag rounded-full px-6 py-3 font-bold">
+    CA copied to clipboard
+  </div>
+
+  <script>
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({ length: 180 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.6 + 0.2,
+        a: Math.random(),
+        s: Math.random() * 0.02 + 0.005,
+      }));
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach((star) => {
+        star.a += star.s;
+        ctx.globalAlpha = 0.35 + Math.abs(Math.sin(star.a)) * 0.65;
+        ctx.fillStyle = "#FFF6E8";
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    resize();
+    drawStars();
+    window.addEventListener("resize", resize);
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+    });
+
+    const CA = "TBA";
+    const toast = document.getElementById("toast");
+    document.getElementById("copyCa").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(CA);
+      } catch {
+        const input = document.createElement("input");
+        input.value = CA;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      }
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1800);
+    });
+  </script>
+</body>
+</html>
