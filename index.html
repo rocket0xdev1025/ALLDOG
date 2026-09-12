@@ -11,7 +11,7 @@
   <link rel="icon" href="logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lilita+One&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -27,8 +27,8 @@
             space: "#05010C",
           },
           fontFamily: {
-            display: ["Chewy", "cursive"],
-            body: ["Fredoka", "Nunito", "sans-serif"],
+            display: ["Lilita One", "Fredoka", "sans-serif"],
+            body: ["Fredoka", "sans-serif"],
           },
           boxShadow: {
             glow: "0 0 40px rgba(196, 165, 116, 0.35)",
@@ -47,10 +47,11 @@
       --caramel: #c4a574;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+    section[id] { scroll-margin-top: 110px; }
 
     body {
-      font-family: "Fredoka", "Nunito", sans-serif;
+      font-family: "Fredoka", sans-serif;
       background: #05010c;
       color: var(--cream);
       overflow-x: hidden;
@@ -112,9 +113,15 @@
       backdrop-filter: blur(16px);
     }
 
+    .font-display { font-weight: 400 !important; letter-spacing: 0.02em; }
+
     .paw-card {
-      background: linear-gradient(165deg, rgba(255, 246, 232, 0.1), rgba(92, 51, 23, 0.28));
-      border: 1px solid rgba(196, 165, 116, 0.35);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(139, 90, 43, 0.45) 0 7px, transparent 8px),
+        radial-gradient(circle at 86% 78%, rgba(160, 103, 58, 0.4) 0 6px, transparent 7px),
+        radial-gradient(circle at 72% 16%, rgba(139, 90, 43, 0.32) 0 5px, transparent 6px),
+        linear-gradient(165deg, rgba(255, 246, 232, 0.16), rgba(92, 51, 23, 0.32));
+      border: 1.5px solid rgba(243, 215, 165, 0.5);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     }
 
@@ -127,22 +134,22 @@
     }
 
     .btn-buy {
-      background: linear-gradient(180deg, #c48a4a 0%, #8b5a2b 55%, #5c3317 100%);
-      color: #fff6e8;
-      box-shadow: 0 8px 0 #3d220f, 0 16px 32px rgba(139, 90, 43, 0.45);
+      background: linear-gradient(180deg, #fff8ee 0%, #f3d7a5 100%);
+      color: #5c3317;
+      box-shadow: 0 6px 0 #8b5a2b, 0 14px 28px rgba(139, 90, 43, 0.35);
     }
-    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 10px 0 #3d220f, 0 20px 36px rgba(196, 165, 116, 0.4); }
-    .btn-buy:active { transform: translateY(4px); box-shadow: 0 2px 0 #3d220f; }
+    .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 0 #8b5a2b, 0 18px 32px rgba(243, 215, 165, 0.45); }
+    .btn-buy:active { transform: translateY(4px); box-shadow: 0 2px 0 #8b5a2b; }
 
     .btn-chart {
-      background: transparent;
+      background: rgba(255, 246, 232, 0.08);
       color: #fff6e8;
-      border: 2px solid #c4a574;
-      box-shadow: 0 0 24px rgba(196, 165, 116, 0.2);
+      border: 2px solid #f3d7a5;
+      box-shadow: 0 0 24px rgba(196, 165, 116, 0.25);
     }
     .btn-chart:hover {
-      background: rgba(255, 246, 232, 0.08);
-      box-shadow: 0 0 32px rgba(196, 165, 116, 0.4);
+      background: rgba(255, 246, 232, 0.16);
+      box-shadow: 0 0 32px rgba(196, 165, 116, 0.45);
     }
 
     .logo-float { animation: floatDog 3.4s ease-in-out infinite; }
@@ -152,10 +159,7 @@
     }
 
     .title-glow {
-      text-shadow:
-        0 4px 0 #5c3317,
-        0 8px 24px rgba(139, 90, 43, 0.55),
-        0 0 40px rgba(196, 165, 116, 0.35);
+      text-shadow: 0 0 28px rgba(243, 215, 165, 0.45), 0 8px 24px rgba(92, 51, 23, 0.4);
     }
 
     .marquee {
@@ -173,15 +177,7 @@
       to { transform: translateX(-50%); }
     }
 
-    .trail::before {
-      content: "";
-      position: absolute;
-      top: 46px;
-      left: 8%;
-      right: 8%;
-      height: 0;
-      border-top: 3px dashed rgba(196, 165, 116, 0.45);
-    }
+    .trail::before { display: none; }
 
     .reveal {
       opacity: 0;
@@ -220,10 +216,11 @@
     }
 
     .toast {
-      transform: translateY(120%);
-      transition: transform 0.35s ease;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
-    .toast.show { transform: translateY(0); }
+    .toast.show { opacity: 1; }
 
     @media (max-width: 768px) {
       .trail::before { display: none; }
@@ -275,6 +272,9 @@
             <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="hover:opacity-80" aria-label="ALLDOG on X">
               <img src="x.png" alt="X" class="h-7 w-7 rounded-md bg-black p-1 ring-1 ring-cream/30" />
             </a>
+            <a href="https://t.me/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="hover:opacity-80" aria-label="ALLDOG on Telegram">
+              <img src="tg.png" alt="Telegram" class="h-7 w-7 rounded-full object-contain ring-1 ring-cream/30" />
+            </a>
             <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-5 py-2 text-sm font-bold">Buy Now</a>
           </div>
           <button id="menuBtn" class="md:hidden text-cream text-2xl px-2" aria-label="Open menu">☰</button>
@@ -284,9 +284,12 @@
           <a href="#howtobuy" class="block">How to Buy</a>
           <a href="#chart" class="block">Chart</a>
           <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-            <img src="x.png" alt="" class="h-6 w-6 rounded bg-black p-1" /> Follow the pack
+            <img src="x.png" alt="" class="h-6 w-6 rounded bg-black p-1" /> Follow on X
           </a>
-          <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-5 py-2 inline-block">Buy Now</a>
+          <a href="https://t.me/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
+            <img src="tg.png" alt="" class="h-6 w-6 rounded-full object-contain" /> Join Telegram
+          </a>
+          <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-5 py-2 block text-center">Buy Now</a>
         </div>
       </nav>
     </header>
@@ -295,7 +298,7 @@
       <section class="pt-32 pb-10 px-4">
         <div class="max-w-6xl mx-auto">
           <div class="relative overflow-hidden rounded-[2.2rem] border border-caramel/40 shadow-glow">
-            <img src="banner.jpg" alt="ALL DOG banner" class="w-full h-[220px] sm:h-[300px] md:h-[380px] object-cover" />
+            <img src="banner.jpg" alt="ALL DOG banner" class="w-full h-auto object-contain bg-black" />
             <div class="absolute inset-0 bg-gradient-to-t from-space via-transparent to-black/20"></div>
           </div>
 
@@ -434,10 +437,16 @@
           <p class="text-foam/85 text-lg max-w-xl mx-auto">
             ALLDOG is here! One pack, one mission, unstoppable meme energy. ALLDOG is running wild on Solana!
           </p>
-          <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-3 btn-chart rounded-full px-6 py-3 font-bold">
-            <img src="x.png" alt="" class="h-7 w-7 rounded bg-black p-1" />
-            Follow @ALLDOGsol
-          </a>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 btn-chart rounded-full px-6 py-3 font-bold">
+              <img src="x.png" alt="" class="h-7 w-7 rounded bg-black p-1" />
+              Follow @ALLDOGsol
+            </a>
+            <a href="https://t.me/ALLDOGsol" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 btn-chart rounded-full px-6 py-3 font-bold">
+              <img src="tg.png" alt="" class="h-7 w-7 rounded-full object-contain" />
+              Join Telegram
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -449,9 +458,14 @@
           <p class="font-display text-xl">ALL DOG <span class="text-caramel text-base">$ALLDOG</span></p>
         </div>
         <p class="text-xs text-foam/60 text-center">Meme coin. Not financial advice. Run with the pack, DYOR.</p>
-        <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" aria-label="X">
-          <img src="x.png" alt="X" class="h-8 w-8 rounded-md bg-black p-1 ring-1 ring-cream/20" />
-        </a>
+        <div class="flex items-center gap-3">
+          <a href="https://x.com/ALLDOGsol" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <img src="x.png" alt="X" class="h-8 w-8 rounded-md bg-black p-1 ring-1 ring-cream/20" />
+          </a>
+          <a href="https://t.me/ALLDOGsol" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <img src="tg.png" alt="Telegram" class="h-8 w-8 rounded-full object-contain ring-1 ring-cream/20" />
+          </a>
+        </div>
       </div>
     </footer>
   </div>
@@ -504,6 +518,7 @@
     const CA = "TBA";
     const toast = document.getElementById("toast");
     document.getElementById("copyCa").addEventListener("click", async () => {
+      toast.classList.add("show");
       try {
         await navigator.clipboard.writeText(CA);
       } catch {
@@ -514,7 +529,6 @@
         document.execCommand("copy");
         input.remove();
       }
-      toast.classList.add("show");
       setTimeout(() => toast.classList.remove("show"), 1800);
     });
   </script>
